@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
@@ -52,8 +51,8 @@ public final class RenameCommand {
         if (heldStack.isEmpty()) {
             context.getSource().sendError(Text.literal("You can't rename nothing."));
         } else {
-            heldStack.setCustomName(((MutableText)newName).styled(x -> x.withItalic(false)));
-            var startingText = (MutableText) Text.literal("Your item has been renamed to ");
+            heldStack.setCustomName(((Text)newName).styled(x -> x.withItalic(false)));
+            var startingText = (Text) Text.literal("Your item has been renamed to ");
             context.getSource().sendFeedback(() -> startingText.append(newName).append("."), false);
         }
         return 1;
